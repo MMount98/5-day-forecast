@@ -12,14 +12,19 @@ function getApi() {
     .then(function (data) {
       console.log(data);
       var currentName = data.city.name;
-      console.log(currentName);
       var currentArray = [
-        data.list[0].weather[0].icon,
         Math.round(data.list[0].main.temp),
         Math.round(data.list[0].wind.speed),
         data.list[0].main.humidity,
       ];
       currentDay.text(currentName + " " + day.format("dddd, MMMM D"));
+      var createImg = $("<img></img").attr(
+        "src",
+        "http://openweathermap.org/img/wn/" +
+          data.list[0].weather[0].icon +
+          "@2x.png"
+      );
+      currentStats.append(createImg);
 
       for (var i = 0; i < currentArray.length; i++) {
         var createLi = $("<li></li>").text(currentArray[i]);
@@ -31,3 +36,8 @@ function getApi() {
 }
 
 getApi();
+
+//laebl boxes with cutoms names
+//.each(box) loop
+//for each thing in this box grab this temp
+//uv index
