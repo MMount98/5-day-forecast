@@ -18,20 +18,44 @@ function getApi() {
         data.list[0].main.humidity,
       ];
       currentDay.text(currentName + " " + day.format("dddd, MMMM D"));
-      var createImg = $("<img></img").attr(
+      var currentImg = $("<img></img").attr(
         "src",
         "http://openweathermap.org/img/wn/" +
           data.list[0].weather[0].icon +
           "@2x.png"
       );
-      currentStats.append(createImg);
+      currentStats.append(currentImg);
 
       for (var i = 0; i < currentArray.length; i++) {
         var createLi = $("<li></li>").text(currentArray[i]);
 
         currentStats.append(createLi);
       }
-      console.log(currentArray);
+      var dayOneBox = $(".dayOneBox h2");
+      var dayOneDate = day.add(1, "d").format("M/D/YY");
+      var dayOneTemp = Math.round(data.list[8].main.temp);
+      var dayOneWind = Math.round(data.list[8].wind.speed);
+      var dayOneHum = data.list[8].main.humidity;
+      console.log(dayOneHum);
+
+      dayOneBox.text(dayOneDate);
+
+      var dayOneImg = $("<img></img").attr(
+        "src",
+        "http://openweathermap.org/img/wn/" +
+          data.list[8].weather[0].icon +
+          "@2x.png"
+      );
+      dayOneBox.append(dayOneImg);
+
+      var createOneTemp = $("<p></p>").text("Temp: " + dayOneTemp + "\xB0");
+      dayOneBox.append(createOneTemp);
+
+      var createOneWind = $("<p></p>").text("Temp: " + dayOneWind + "MPH");
+      dayOneBox.append(createOneWind);
+
+      var createOneHum = $("<p></p>").text("Humidity: " + dayOneHum + "%");
+      dayOneBox.append(createOneHum);
     });
 }
 
