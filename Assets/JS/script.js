@@ -1,8 +1,19 @@
 var currentDay = $("span");
 var currentStats = $(".currentDay");
+var searchInput = $("#searchInput");
+var searchBtn = $("#searchBtn");
 var day = dayjs();
 var requestUrl =
   "https://api.openweathermap.org/data/2.5/forecast?q=denver&appid=2061c6c3acd7e8fc81514bd609fb308e&units=imperial";
+
+searchBtn.on("click", function (event) {
+  event.preventDefault();
+  var userSearch = searchInput.val();
+  requestUrl =
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
+    userSearch +
+    "&appid=2061c6c3acd7e8fc81514bd609fb308e&units=imperial";
+});
 
 function getApi() {
   fetch(requestUrl)
