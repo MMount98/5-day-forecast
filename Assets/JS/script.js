@@ -1,7 +1,9 @@
 var currentDay = $("span");
 var currentStats = $(".currentDay");
+var recentBox = $(".pastBox");
 var searchInput = $("#searchInput");
 var searchBtn = $("#searchBtn");
+var pastSearch = [];
 var day = dayjs();
 var requestUrl =
   "https://api.openweathermap.org/data/2.5/forecast?q=denver&appid=2061c6c3acd7e8fc81514bd609fb308e&units=imperial";
@@ -9,10 +11,19 @@ var requestUrl =
 searchBtn.on("click", function (event) {
   event.preventDefault();
   var userSearch = searchInput.val();
+  pastSearch.push(userSearch);
   requestUrl =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
     userSearch +
     "&appid=2061c6c3acd7e8fc81514bd609fb308e&units=imperial";
+
+  localStorage.setItem("pastSearch", JSON.stringify(pastSearch));
+  var storedHistory = JSON.parse(localStorage.getItem("pastSearch"));
+
+  for (var i = 0; i < storedHistory.length; i++) {
+    var createBtn = $("<a></a>").text(storedHistory[i]);
+    recentBox.append(createBtn);
+  }
 });
 
 function getApi() {
