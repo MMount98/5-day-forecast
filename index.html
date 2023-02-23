@@ -23,9 +23,13 @@
               type="search"
               placeholder="Search"
               aria-label="Search"
-              id = "searchInput"
+              id="searchInput"
             />
-            <button class="btn btn-outline-light btn-dark" id ="searchBtn" type="submit">
+            <button
+              class="btn btn-outline-light btn-dark"
+              id="searchBtn"
+              type="submit"
+            >
               Search
             </button>
           </form>
@@ -42,7 +46,11 @@
             </div>
             <div class="col-9">
               <div class="box currentDayBox">
-                <h1>Today in: <span></span></h1>
+                <h1>Today in: <span id="location"></span></h1>
+                <img id="currentIcon" />
+                <p id="temp"></p>
+                <p id="wind"></p>
+                <p id="hum"></p>
               </div>
             </div>
           </div>

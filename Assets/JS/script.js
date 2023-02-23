@@ -10,8 +10,10 @@ var requestUrl =
 
 searchBtn.on("click", function (event) {
   event.preventDefault();
+
   var userSearch = searchInput.val();
   pastSearch.push(userSearch);
+
   requestUrl =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
     userSearch +
@@ -24,6 +26,7 @@ searchBtn.on("click", function (event) {
     var createBtn = $("<a></a>").text(storedHistory[i]);
     recentBox.append(createBtn);
   }
+  getApi();
 });
 
 function getApi() {
@@ -41,26 +44,18 @@ function getApi() {
 
       currentDay.text(currentName + " " + day.format("dddd, MMMM D"));
 
-      var currentImg = $("<img></img").attr(
+      $("#currentIcon").attr(
         "src",
         "http://openweathermap.org/img/wn/" +
           data.list[0].weather[0].icon +
           "@2x.png"
       );
-      currentDayBox.append(currentImg);
 
-      var createCurrentTemp = $("<p></p>").text(
-        "Temp: " + currentDayTemp + "\xB0"
-      );
-      currentDayBox.append(createCurrentTemp);
+      $("#temp").text("Temp: " + currentDayTemp + "\xB0");
 
-      var createCurrentWind = $("<p></p>").text(
-        "Wind: " + currentDayWind + "MPH"
-      );
-      currentDayBox.append(createCurrentWind);
+      $("#wind").text("Wind: " + currentDayWind + " MPH");
 
-      var createDayHum = $("<p></p>").text("Humidity: " + currentDayHum + "%");
-      currentDayBox.append(createDayHum);
+      $("#hum").text("Humidity: " + currentDayHum + "%");
 
       //Day One Box - Local Varibles
       var dayOneBox = $(".dayOneBox h2");
@@ -82,7 +77,7 @@ function getApi() {
       var createOneTemp = $("<p></p>").text("Temp: " + dayOneTemp + "\xB0");
       dayOneBox.append(createOneTemp);
 
-      var createOneWind = $("<p></p>").text("Wind: " + dayOneWind + "MPH");
+      var createOneWind = $("<p></p>").text("Wind: " + dayOneWind + " MPH");
       dayOneBox.append(createOneWind);
 
       var createOneHum = $("<p></p>").text("Humidity: " + dayOneHum + "%");
@@ -108,7 +103,7 @@ function getApi() {
       var createTwoTemp = $("<p></p>").text("Temp: " + dayTwoTemp + "\xB0");
       dayTwoBox.append(createTwoTemp);
 
-      var createTwoWind = $("<p></p>").text("Wind: " + dayTwoWind + "MPH");
+      var createTwoWind = $("<p></p>").text("Wind: " + dayTwoWind + " MPH");
       dayTwoBox.append(createTwoWind);
 
       var createTwoHum = $("<p></p>").text("Humidity: " + dayTwoHum + "%");
@@ -134,7 +129,7 @@ function getApi() {
       var createThreeTemp = $("<p></p>").text("Temp: " + dayThreeTemp + "\xB0");
       dayThreeBox.append(createThreeTemp);
 
-      var createThreeWind = $("<p></p>").text("Wind: " + dayThreeWind + "MPH");
+      var createThreeWind = $("<p></p>").text("Wind: " + dayThreeWind + " MPH");
       dayThreeBox.append(createThreeWind);
 
       var createThreeHum = $("<p></p>").text("Humidity: " + dayThreeHum + "%");
@@ -160,7 +155,7 @@ function getApi() {
       var createFourTemp = $("<p></p>").text("Temp: " + dayFourTemp + "\xB0");
       dayFourBox.append(createFourTemp);
 
-      var createFourWind = $("<p></p>").text("Wind: " + dayFourWind + "MPH");
+      var createFourWind = $("<p></p>").text("Wind: " + dayFourWind + " MPH");
       dayFourBox.append(createFourWind);
 
       var createFourHum = $("<p></p>").text("Humidity: " + dayFourHum + "%");
@@ -186,12 +181,10 @@ function getApi() {
       var createFiveTemp = $("<p></p>").text("Temp: " + dayFiveTemp + "\xB0");
       dayFiveBox.append(createFiveTemp);
 
-      var createFiveWind = $("<p></p>").text("Wind: " + dayFiveWind + "MPH");
+      var createFiveWind = $("<p></p>").text("Wind: " + dayFiveWind + " MPH");
       dayFiveBox.append(createFiveWind);
 
       var createFiveHum = $("<p></p>").text("Humidity: " + dayFiveHum + "%");
       dayFiveBox.append(createFiveHum);
     });
 }
-
-getApi();
