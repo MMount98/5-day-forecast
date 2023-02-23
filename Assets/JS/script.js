@@ -56,6 +56,31 @@ function getApi() {
 
       var createOneHum = $("<p></p>").text("Humidity: " + dayOneHum + "%");
       dayOneBox.append(createOneHum);
+
+      var dayTwoBox = $(".dayTwoBox h2");
+      var dayTwoDate = day.add(2, "d").format("M/D/YY");
+      var dayTwoTemp = Math.round(data.list[16].main.temp);
+      var dayTwoWind = Math.round(data.list[16].wind.speed);
+      var dayTwoHum = data.list[16].main.humidity;
+
+      dayTwoBox.text(dayTwoDate);
+
+      var dayTwoImg = $("<img></img").attr(
+        "src",
+        "http://openweathermap.org/img/wn/" +
+          data.list[16].weather[0].icon +
+          "@2x.png"
+      );
+      dayTwoBox.append(dayTwoImg);
+
+      var createTwoTemp = $("<p></p>").text("Temp: " + dayTwoTemp + "\xB0");
+      dayTwoBox.append(createTwoTemp);
+
+      var createTwoWind = $("<p></p>").text("Temp: " + dayTwoWind + "MPH");
+      dayTwoBox.append(createTwoWind);
+
+      var createTwoHum = $("<p></p>").text("Humidity: " + dayTwoHum + "%");
+      dayTwoBox.append(createTwoHum);
     });
 }
 
