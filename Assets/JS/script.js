@@ -10,34 +10,43 @@ function getApi() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      //current Day - Local Varibles
+      var currentDayBox = $(".currentDayBox");
       var currentName = data.city.name;
-      var currentArray = [
-        Math.round(data.list[0].main.temp),
-        Math.round(data.list[0].wind.speed),
-        data.list[0].main.humidity,
-      ];
+      var currentDayTemp = Math.round(data.list[0].main.temp);
+      var currentDayWind = Math.round(data.list[0].wind.speed);
+      var currentDayHum = data.list[0].main.humidity;
+
       currentDay.text(currentName + " " + day.format("dddd, MMMM D"));
+
       var currentImg = $("<img></img").attr(
         "src",
         "http://openweathermap.org/img/wn/" +
           data.list[0].weather[0].icon +
           "@2x.png"
       );
-      currentStats.append(currentImg);
+      currentDayBox.append(currentImg);
 
-      for (var i = 0; i < currentArray.length; i++) {
-        var createLi = $("<li></li>").text(currentArray[i]);
+      var createCurrentTemp = $("<p></p>").text(
+        "Temp: " + currentDayTemp + "\xB0"
+      );
+      currentDayBox.append(createCurrentTemp);
 
-        currentStats.append(createLi);
-      }
+      var createCurrentWind = $("<p></p>").text(
+        "Wind: " + currentDayWind + "MPH"
+      );
+      currentDayBox.append(createCurrentWind);
+
+      var createDayHum = $("<p></p>").text("Humidity: " + currentDayHum + "%");
+      currentDayBox.append(createDayHum);
+
+      //Day One Box - Local Varibles
       var dayOneBox = $(".dayOneBox h2");
       var dayOneDate = day.add(1, "d").format("M/D/YY");
       var dayOneTemp = Math.round(data.list[8].main.temp);
       var dayOneWind = Math.round(data.list[8].wind.speed);
       var dayOneHum = data.list[8].main.humidity;
 
-      //Day One box
       dayOneBox.text(dayOneDate);
 
       var dayOneImg = $("<img></img").attr(
@@ -57,7 +66,7 @@ function getApi() {
       var createOneHum = $("<p></p>").text("Humidity: " + dayOneHum + "%");
       dayOneBox.append(createOneHum);
 
-      //day Two Box
+      //day Two Box - Local Varibles
       var dayTwoBox = $(".dayTwoBox h2");
       var dayTwoDate = day.add(2, "d").format("M/D/YY");
       var dayTwoTemp = Math.round(data.list[16].main.temp);
@@ -83,7 +92,7 @@ function getApi() {
       var createTwoHum = $("<p></p>").text("Humidity: " + dayTwoHum + "%");
       dayTwoBox.append(createTwoHum);
 
-      //Day Three Box
+      //Day Three Box - Local Varibles
       var dayThreeBox = $(".dayThreeBox h2");
       var dayThreeDate = day.add(3, "d").format("M/D/YY");
       var dayThreeTemp = Math.round(data.list[24].main.temp);
@@ -109,7 +118,7 @@ function getApi() {
       var createThreeHum = $("<p></p>").text("Humidity: " + dayThreeHum + "%");
       dayThreeBox.append(createThreeHum);
 
-      //Day Four Box
+      //Day Four Box - Local Varibles
       var dayFourBox = $(".dayFourBox h2");
       var dayFourDate = day.add(4, "d").format("M/D/YY");
       var dayFourTemp = Math.round(data.list[32].main.temp);
@@ -135,7 +144,7 @@ function getApi() {
       var createFourHum = $("<p></p>").text("Humidity: " + dayFourHum + "%");
       dayFourBox.append(createFourHum);
 
-      //Day Five Box
+      //Day Five Box - Local Varibles
       var dayFiveBox = $(".dayFiveBox h2");
       var dayFiveDate = day.add(5, "d").format("M/D/YY");
       var dayFiveTemp = Math.round(data.list[39].main.temp);
@@ -164,8 +173,3 @@ function getApi() {
 }
 
 getApi();
-
-//laebl boxes with cutoms names
-//.each(box) loop
-//for each thing in this box grab this temp
-//uv index
