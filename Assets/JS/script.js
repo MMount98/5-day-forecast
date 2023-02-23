@@ -1,3 +1,4 @@
+var landingPage = $(".landingPage");
 var currentDay = $("span");
 var currentStats = $(".currentDay");
 var recentBox = $(".pastBox");
@@ -8,10 +9,18 @@ var day = dayjs();
 
 searchBtn.on("click", function (event) {
   event.preventDefault();
-
   var userSearch = searchInput.val();
+
+  if (userSearch === "") {
+    alert("Please Enter a Valid City Name");
+    return;
+  }
+
   pastSearch.push(userSearch);
   searchInput.val("");
+
+  $(".container").removeClass("hidden");
+  landingPage.addClass("hidden");
 
   requestUrl =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
@@ -33,10 +42,11 @@ searchBtn.on("click", function (event) {
   $(".pastBtn").on("click", function (event) {
     var savedCity = event.target.innerText;
     console.log(event.target.innerText);
-    var savedSearchUrl =
+    requestUrl =
       "https://api.openweathermap.org/data/2.5/forecast?q=" +
       savedCity +
       "&appid=2061c6c3acd7e8fc81514bd609fb308e&units=imperial";
+    getApi(requestUrl);
   });
 
   getApi(requestUrl);

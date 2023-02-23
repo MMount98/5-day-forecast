@@ -1,6 +1,11 @@
 body {
   background-color: rgb(33, 57, 77);
 }
+
+.landingPage {
+  font-size: 24px;
+  color: black;
+}
 .box {
   border: 1px solid rgb(0, 0, 0);
   background-color: rgba(183, 183, 255, 0.493);
@@ -35,6 +40,12 @@ li {
   font-size: 25px;
   padding: 5px;
   margin: 5px;
+}
+
+/*Class Editors*/
+
+.hidden {
+  display: none;
 }
 
 .rainyDay {
