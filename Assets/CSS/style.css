@@ -3,7 +3,7 @@ body {
 }
 .box {
   border: 1px solid rgb(0, 0, 0);
-  background-color: rgb(179, 179, 203);
+  background-color: rgba(183, 183, 255, 0.493);
   border-radius: 10px;
   box-shadow: 3px 3px 3px;
 }
@@ -15,7 +15,7 @@ p {
 
 .pastBox {
   border: 1px solid rgb(0, 0, 0);
-  background-color: rgb(183, 183, 255);
+  background-color: rgba(183, 183, 255, 0.493);
   font-size: 16px;
   list-style-type: none;
   max-width: 275px;
@@ -28,4 +28,46 @@ li {
 
 .dayBox {
   margin-left: 300px;
+}
+
+.pastBtn {
+  border-radius: 5px;
+  font-size: 25px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.rainyDay {
+  background-image: url("https://metro.co.uk/wp-content/uploads/2018/06/giphy-1.gif?quality=90&strip=all&zoom=1&resize=600%2C323");
+  background-size: cover;
+}
+
+.sunnyDay {
+  background-image: url("https://www.icegif.com/wp-content/uploads/studio-ghibli-icegif-11.gif");
+  background-size: cover;
+}
+
+.drizzle {
+  background-image: url("https://cdnb.artstation.com/p/assets/images/images/019/682/809/original/cinthia-marsana-gif-thunder.gif?1564573117");
+  background-size: cover;
+}
+
+.cloudyDay {
+  background-size: cover;
+  background-image: url("https://images.gr-assets.com/hostedimages/1639022787ra/32294033.gif");
+}
+
+.snowyDay {
+  background-image: url("https://gifdb.com/images/high/anime-snow-falling-dbjm19ajzeo5g7ns.webp");
+  background-size: cover;
+}
+
+.drizzle {
+  background-image: url("https://thumbs.gfycat.com/SphericalNegligibleFreshwatereel-size_restricted.gif");
+  background-size: cover;
+}
+
+.thunderstorm {
+  background-size: cover;
+  background-image: url("https://64.media.tumblr.com/f0ac00367d33003b00fb73231da7a1d3/tumblr_ocr4l0HeuQ1sjhlp5o1_540.gif");
 }
