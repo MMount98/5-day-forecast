@@ -9,8 +9,9 @@ var day = dayjs();
 searchBtn.on("click", function (event) {
   event.preventDefault();
 
-  var userSearch = searchInput.val();
+  var userSearch = searchInput.val().trim();
   pastSearch.push(userSearch);
+  searchInput.val("");
 
   requestUrl =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
@@ -19,6 +20,7 @@ searchBtn.on("click", function (event) {
 
   localStorage.setItem("pastSearch", JSON.stringify(pastSearch));
   var storedHistory = JSON.parse(localStorage.getItem("pastSearch"));
+  $("input").reset();
 
   getApi();
 });
@@ -199,4 +201,3 @@ function getApi() {
 //     });
 // });
 // var cityList = JSON.parse(localStorage.getItem("pastSearch"));
-//   pastSearchEl.textContent = "";
