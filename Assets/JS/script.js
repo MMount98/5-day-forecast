@@ -5,8 +5,6 @@ var searchInput = $("#searchInput");
 var searchBtn = $("#searchBtn");
 var pastSearch = [];
 var day = dayjs();
-var requestUrl =
-  "https://api.openweathermap.org/data/2.5/forecast?q=denver&appid=2061c6c3acd7e8fc81514bd609fb308e&units=imperial";
 
 searchBtn.on("click", function (event) {
   event.preventDefault();
@@ -22,10 +20,6 @@ searchBtn.on("click", function (event) {
   localStorage.setItem("pastSearch", JSON.stringify(pastSearch));
   var storedHistory = JSON.parse(localStorage.getItem("pastSearch"));
 
-  for (var i = 0; i < storedHistory.length; i++) {
-    var createBtn = $("<a></a>").text(storedHistory[i]);
-    recentBox.append(createBtn);
-  }
   getApi();
 });
 
@@ -188,3 +182,21 @@ function getApi() {
       dayFiveBox.append(createFiveHum);
     });
 }
+
+//creat btn function in the button
+
+// $(".pastBtnSearch").on("click", function (event) {
+//   event.preventDefault();
+//   var userSearch = event.target.innerText;
+//   var userSearchURL =
+//     weatherUrl + userSearch + "&length1" + weatherApiKey + "&units=imperial";
+//   fetch(userSearchURL)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       addWeatherToday(data);
+//     });
+// });
+// var cityList = JSON.parse(localStorage.getItem("pastSearch"));
+//   pastSearchEl.textContent = "";
