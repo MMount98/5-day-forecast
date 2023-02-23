@@ -9,7 +9,7 @@ var day = dayjs();
 searchBtn.on("click", function (event) {
   event.preventDefault();
 
-  var userSearch = searchInput.val().trim();
+  var userSearch = searchInput.val();
   pastSearch.push(userSearch);
   searchInput.val("");
 
@@ -20,7 +20,16 @@ searchBtn.on("click", function (event) {
 
   localStorage.setItem("pastSearch", JSON.stringify(pastSearch));
   var storedHistory = JSON.parse(localStorage.getItem("pastSearch"));
-  $("input").reset();
+
+  for (var i = 0; i < storedHistory.length; i++) {
+    var createBtn = $("<button></button>")
+      .attr("id", "pastBtn")
+      .text(storedHistory[i]);
+    $(".pastBox").append(createBtn);
+  }
+  $("#pastBtn").on("click", function (event) {
+    console.log(val(event.target));
+  });
 
   getApi();
 });
@@ -201,3 +210,4 @@ function getApi() {
 //     });
 // });
 // var cityList = JSON.parse(localStorage.getItem("pastSearch"));
+//   pastSearchEl.textContent = "";
