@@ -1,58 +1,72 @@
+//GLOBAL VARIBLES
 var landingPage = $(".landingPage");
 var currentDay = $("span");
 var currentStats = $(".currentDay");
 var recentBox = $(".pastBox");
 var searchInput = $("#searchInput");
 var searchBtn = $("#searchBtn");
-var pastSearch = [];
+var pastSearch = JSON.parse(localStorage.getItem("pastSearch")) || []; //definded to check local storage from past vists
 var day = dayjs();
+var statusCheck;
 
+//EVENT LISNTERS
 searchBtn.on("click", function (event) {
   event.preventDefault();
   var userSearch = searchInput.val();
 
+  //If statement to track if the user input a city
   if (userSearch === "") {
     alert("Please Enter a Valid City Name");
     return;
   }
 
+  //Pushs users input to global var
   pastSearch.push(userSearch);
+  //restes input feild
   searchInput.val("");
 
+  //removes class 'hidden' from DOM element to display info boxes
   $(".container").removeClass("hidden");
+  //add 'hidden' to landing text
   landingPage.addClass("hidden");
 
+  //custom request URL to add users input
   requestUrl =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
     userSearch +
     "&appid=2061c6c3acd7e8fc81514bd609fb308e&units=imperial";
 
+  //saves user input to local storage
   localStorage.setItem("pastSearch", JSON.stringify(pastSearch));
   var storedHistory = JSON.parse(localStorage.getItem("pastSearch"));
 
+  //clears the recent search box to avoid duplication
   $("#pastBox").empty();
 
+  //for loop to build recent buttons from past user input
   for (var i = 0; i < storedHistory.length; i++) {
     var createBtn = $("<button></button>")
       .attr("class", "pastBtn")
       .text(storedHistory[i]);
     $("#pastBox").append(createBtn);
   }
-
+  //sets event lisnter to the past buttons and updates the URL and call getAPI function
   $(".pastBtn").on("click", function (event) {
     var savedCity = event.target.innerText;
-    console.log(event.target.innerText);
+
     requestUrl =
       "https://api.openweathermap.org/data/2.5/forecast?q=" +
       savedCity +
       "&appid=2061c6c3acd7e8fc81514bd609fb308e&units=imperial";
     getApi(requestUrl);
   });
-
+  //Calls get API when search btn is clicked
   getApi(requestUrl);
 });
 
+//FUNCTIONS
 function getApi(requestUrl) {
+  //Grabs Data from API
   fetch(requestUrl)
     .then(function (response) {
       return response.json();
@@ -64,8 +78,8 @@ function getApi(requestUrl) {
       var currentDayTemp = Math.round(data.list[0].main.temp);
       var currentDayWind = Math.round(data.list[0].wind.speed);
       var currentDayHum = data.list[0].main.humidity;
-      console.log(data);
 
+      //Sets Stats for current Weather
       currentDay.text(currentName + " " + day.format("dddd, MMMM D"));
 
       $("#currentIcon").attr(
@@ -74,7 +88,7 @@ function getApi(requestUrl) {
           data.list[0].weather[0].icon +
           "@2x.png"
       );
-
+      //Changes the DOM to display the data from API
       $("#temp").text("Temp: " + currentDayTemp + "\xB0 F");
 
       $("#wind").text("Wind: " + currentDayWind + " MPH");
@@ -213,6 +227,7 @@ function getApi(requestUrl) {
       var createFiveHum = $("<p></p>").text("Humidity: " + dayFiveHum + "%");
       dayFiveBox.append(createFiveHum);
 
+      //Sets background visual to change depening on given weather condition from API
       if (data.list[0].weather[0].main === "Clouds") {
         $("body").removeClass();
         $("body").addClass("cloudyDay");

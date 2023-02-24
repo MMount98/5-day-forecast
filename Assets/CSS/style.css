@@ -44,6 +44,11 @@ li {
   margin: 5px;
 }
 
+.pastBtn:hover {
+  background-color: rgb(90, 89, 156);
+  color: rgb(255, 255, 255);
+}
+
 /*Class Editors*/
 
 .hidden {
