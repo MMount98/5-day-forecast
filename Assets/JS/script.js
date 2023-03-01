@@ -10,7 +10,7 @@ var day = dayjs();
 var statusCheck;
 
 //EVENT LISNTERS
-searchBtn.on("click", function (event) {
+searchBtn.on("click", (event) => {
   event.preventDefault();
   var userSearch = searchInput.val();
 
@@ -65,13 +65,13 @@ searchBtn.on("click", function (event) {
 });
 
 //FUNCTIONS
-function getApi(requestUrl) {
+var getApi = (requestUrl) => {
   //Grabs Data from API
   fetch(requestUrl)
     .then(function (response) {
       return response.json();
     })
-    .then(function (data) {
+    .then((data) => {
       //current Day - Local Varibles
       var currentDayBox = $(".currentDayBox");
       var currentName = data.city.name;
@@ -248,4 +248,4 @@ function getApi(requestUrl) {
         $("body").addClass("thunder");
       }
     });
-}
+};
